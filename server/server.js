@@ -23,9 +23,9 @@ const typeDefs = await readFile(resolvedPath, 'utf8');
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
 await apolloServer.start();
 app.use(express.json({ limit: "50mb"}))
-app.use('/graphql', apolloMiddleware(apolloServer));
+app.use('/', apolloMiddleware(apolloServer));
 
 app.listen({ port: PORT}, () => {
     console.log(`Server running on port ${ PORT }`);
-    console.log(`GrapQL endpont: http://localhost:${PORT}/graphql`);
+    console.log(`GrapQL endpont: http://localhost:${PORT}`);
 })
