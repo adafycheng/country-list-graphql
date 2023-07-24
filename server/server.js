@@ -6,7 +6,7 @@ import { resolvers } from './resolvers.js';
 import { handleListAll, handleSearch } from './searchCountry.js';
 
 
-const PORT = 9001;
+const PORT = 9000;
 
 const app = express();
 app.get('/countries', handleListAll);
