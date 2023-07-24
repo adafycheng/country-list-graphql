@@ -4,16 +4,20 @@ import express from 'express';
 import { readFile } from 'node:fs/promises';
 import { resolvers } from './resolvers.js';
 import { handleListAll, handleSearch } from './searchCountry.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-
-const PORT = 9000;
+const PORT = 9001;
 
 const app = express();
 app.get('/countries', handleListAll);
 app.get('/country', handleSearch);
 
-
-const typeDefs = await readFile('schema.graphql', 'utf8');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const baseDir = __dirname + "/";
+const resolvedPath = path.resolve(baseDir + 'schema.graphql');
+const typeDefs = await readFile(resolvedPath, 'utf8');
 
 
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
