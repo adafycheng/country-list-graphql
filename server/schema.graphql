@@ -1,0 +1,17 @@
+type Query {
+    countries: [Country]
+}
+
+"""
+Countries.
+"""
+type Country {
+    """Phone Calling Code"""
+    countryCode: String
+    """ISO Alpha-2 code"""
+    isoCode: String
+    """ISO Alpha-3 code"""
+    isoCodeA3: String
+    """Country Name in English"""
+    nameEn: String
+}
