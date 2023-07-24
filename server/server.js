@@ -17,6 +17,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const baseDir = __dirname + "/";
 const resolvedPath = path.resolve(baseDir + 'schema.graphql');
+console.log("resolvedPath: " + resolvedPath);
 const typeDefs = await readFile(resolvedPath, 'utf8');
 
 
