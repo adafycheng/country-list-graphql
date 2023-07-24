@@ -14,7 +14,7 @@ app.get('/countries', handleListAll);
 app.get('/country', handleSearch);
 
 
-const file = path.join(process.cwd(), '', 'schema.graphql');
+const file = path.join(process.cwd(), '../server', 'schema.graphql');
 const typeDefs = await readFile(file, 'utf8');
 
 
