@@ -4,6 +4,8 @@ import express from 'express';
 import { readFile } from 'node:fs/promises';
 import { resolvers } from './resolvers.js';
 import { handleListAll, handleSearch } from './searchCountry.js';
+import path from "path";
+
 
 const PORT = 9000;
 
@@ -12,7 +14,9 @@ app.get('/countries', handleListAll);
 app.get('/country', handleSearch);
 
 
-const typeDefs = await readFile('./schema.graphql', 'utf8');
+const file = path.join(process.cwd(), '', 'schema.graphql');
+const typeDefs = await readFile(file, 'utf8');
+
 
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
 await apolloServer.start();
