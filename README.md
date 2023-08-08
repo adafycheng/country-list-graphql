@@ -35,6 +35,8 @@ sqlite3 country.db
 
 A Node.js express server responding to queries for countries using Apollo GraphQL server.
 
+### Development
+
 1. Create package.json.
 
     ```json
@@ -75,8 +77,51 @@ A Node.js express server responding to queries for countries using Apollo GraphQ
     npm start
     ```
 
-5. Open `http://localhost:9000/graphql` in browser.
+### Test Locally
 
-6. Get all countries at: http://localhost:9000/countries.
+1. Open http://localhost:9000/graphql in browser.
 
-7. Get country by code at: http://localhost:9000/country?code=HK.
+2. Get all countries at http://localhost:9000/countries.
+
+3. Get country by code at http://localhost:9000/country?code=HK.
+
+4. To get specific fields of all countries, type the following command in Terminal / Command Prompt:
+
+```shell
+export GRAPHQL_SERVER=http://localhost:9000
+
+curl --request POST \
+--header 'content-type: application/json' \
+--url "$GRAPHQL_SERVER" \
+--data '{"query":"query { countries { countryCode isoCode isoCodeA3 nameEn } }"}' | jq
+```
+
+5. To search for a specific country by ISO Code, type the following command in Terminal / Command Prompt:
+
+```shell
+curl --request POST \
+--header 'content-type: application/json' \
+--url "$GRAPHQL_SERVER" \
+--data '{"query":"query { country(isoCode: \"HK\") { countryCode isoCode isoCodeA3 nameEn } }"}' | jq
+```
+
+### Deployment
+
+Deployed to [Vercel](https://country-list-graphql.vercel.app/).
+
+1. Open https://country-list-graphql.vercel.app/ in browser.
+
+2. Get all countries at https://country-list-graphql.vercel.app/countries.
+
+3. Get country by code at https://country-list-graphql.vercel.app/countries.
+
+4. To search for a specific country by ISO Code, type the following command in Terminal / Command Prompt:
+
+```shell
+export GRAPHQL_SERVER=https://country-list-graphql.vercel.app
+
+curl --request POST \
+--header 'content-type: application/json' \
+--url "$GRAPHQL_SERVER" \
+--data '{"query":"query { country(isoCode: \"HK\") { countryCode isoCode isoCodeA3 nameEn } }"}' | jq
+```

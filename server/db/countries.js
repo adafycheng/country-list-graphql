@@ -6,7 +6,7 @@ export async function getCountries() {
   return await getCountryTable();
 }
 
-export async function getCountry(isoCode) {
+export async function getCountryByIsoCode(isoCode) {
   return await getCountryTable().first().where({ isoCode });
 }
 

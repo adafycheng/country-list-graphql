@@ -1,7 +1,8 @@
-import { getCountries } from './db/countries.js';
+import {getCountries, getCountryByIsoCode} from './db/countries.js';
 
 export const resolvers = {
     Query: {
-        countries: () => getCountries()
+        countries: () => getCountries(),
+        country: (_root, { isoCode }) => getCountryByIsoCode(isoCode),
     },
 }
