@@ -1,6 +1,6 @@
 {
     "name": "country-list-server",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Country list from GraphQL Apollo Server",
     "author": "adafycheng",
     "private": true,
