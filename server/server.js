@@ -41,9 +41,9 @@ const app = express();
 app.get('/countries', handleListAll);
 app.get('/country', handleSearchByIsoCode);
 
-app.use(express.json({ limit: "50mb"}))
 app.use('/',
     cors({ origin: ['https://aws-api-specs.adafycheng.dev'] }),
+    express.json({ limit: "50mb"}),
     apolloMiddleware(apolloServer));
 
 app.listen({ port: PORT}, () => {
