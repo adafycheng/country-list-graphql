@@ -7,6 +7,7 @@ import { handleListAll, handleSearchByIsoCode } from './searchCountry.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { readFile } from 'node:fs/promises';
+import cors from 'cors';
 
 
 // Constants
@@ -41,12 +42,9 @@ app.get('/countries', handleListAll);
 app.get('/country', handleSearchByIsoCode);
 
 app.use(express.json({ limit: "50mb"}))
-app.use('/', apolloMiddleware(apolloServer));
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "aws-api-specs.adafycheng.dev");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+app.use('/',
+    cors({ origin: ['https://aws-api-specs.adafycheng.dev'] }),
+    apolloMiddleware(apolloServer));
 
 app.listen({ port: PORT}, () => {
     console.log(`Server running on port ${ PORT }`);
