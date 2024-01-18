@@ -79,11 +79,41 @@ A Node.js express server responding to the queries for countries using Apollo Gr
 
 ### Test Locally
 
-1. Open http://localhost:9000/graphqlOt-graphql.vercel.app/ in browser.
+1. Open GraphQL Explorer at `http://localhost:9000/graphql` in browser.
 
-2. Get all countries at https://country-list-graphql.vercel.app/countries.
+2. Get all countries at `http://localhost:9000/countries`.
 
-3. Get country by code at https://country-list-graphql.vercel.app/country?code=HK.
+3. Get country by code at `http://localhost:9000/country?code=HK`.
+
+4. To get specific fields of all countries, type the following command in Terminal / Command Prompt:
+
+```shell
+export GRAPHQL_SERVER=http://localhost:9000
+
+curl --request POST \
+--header 'content-type: application/json' \
+--url "$GRAPHQL_SERVER" \
+--data '{"query":"query { countries { countryCode isoCode isoCodeA3 nameEn } }"}' | jq
+```
+
+5. To search for a specific country by ISO Code, type the following command in Terminal / Command Prompt:
+
+```shell
+curl --request POST \
+--header 'content-type: application/json' \
+--url "$GRAPHQL_SERVER" \
+--data '{"query":"query { country(isoCode: \"HK\") { countryCode isoCode isoCodeA3 nameEn } }"}' | jq
+```
+
+### Deployment
+
+Deployed to [Vercel](https://country-list-graphql.vercel.app/).
+
+1. Open landing page at `https://country-list-graphql.vercel.app/` in browser.
+
+2. Get all countries at `https://country-list-graphql.vercel.app/countries`.
+
+3. Get country by code at `https://country-list-graphql.vercel.app/country?code=HK`.
 
 4. To search for a specific country by ISO Code, type the following command in Terminal / Command Prompt:
 
