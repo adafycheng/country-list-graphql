@@ -1,6 +1,6 @@
 # Country List
 
-This is a project which demostrates GraphQL.
+This is a project which demonstrates GraphQL.
 
 It uses Apollo Server with Express, and GraphQL-Request and Apollo Client as GraphQL clients. The application is used to explain queries, mutations, custom object types, authentication, etc.
 
@@ -33,7 +33,7 @@ sqlite3 country.db
 
 ## Server
 
-A Node.js express server responding to queries for countries using Apollo GraphQL server.
+A Node.js express server responding to the queries for countries using Apollo GraphQL server.
 
 ### Development
 
@@ -79,41 +79,11 @@ A Node.js express server responding to queries for countries using Apollo GraphQ
 
 ### Test Locally
 
-1. Open http://localhost:9000/graphql in browser.
-
-2. Get all countries at http://localhost:9000/countries.
-
-3. Get country by code at http://localhost:9000/country?code=HK.
-
-4. To get specific fields of all countries, type the following command in Terminal / Command Prompt:
-
-```shell
-export GRAPHQL_SERVER=http://localhost:9000
-
-curl --request POST \
---header 'content-type: application/json' \
---url "$GRAPHQL_SERVER" \
---data '{"query":"query { countries { countryCode isoCode isoCodeA3 nameEn } }"}' | jq
-```
-
-5. To search for a specific country by ISO Code, type the following command in Terminal / Command Prompt:
-
-```shell
-curl --request POST \
---header 'content-type: application/json' \
---url "$GRAPHQL_SERVER" \
---data '{"query":"query { country(isoCode: \"HK\") { countryCode isoCode isoCodeA3 nameEn } }"}' | jq
-```
-
-### Deployment
-
-Deployed to [Vercel](https://country-list-graphql.vercel.app/).
-
-1. Open https://country-list-graphql.vercel.app/ in browser.
+1. Open http://localhost:9000/graphqlOt-graphql.vercel.app/ in browser.
 
 2. Get all countries at https://country-list-graphql.vercel.app/countries.
 
-3. Get country by code at https://country-list-graphql.vercel.app/countries.
+3. Get country by code at https://country-list-graphql.vercel.app/country?code=HK.
 
 4. To search for a specific country by ISO Code, type the following command in Terminal / Command Prompt:
 

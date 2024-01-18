@@ -1,4 +1,5 @@
 import { ApolloServer } from '@apollo/server';
+import { ApolloServerPluginLandingPageLocalDefault, ApolloServerPluginLandingPageProductionDefault } from '@apollo/server/plugin/landingPage/default';
 import { expressMiddleware as apolloMiddleware } from '@apollo/server/express4';
 import express from 'express';
 import { readFile } from 'node:fs/promises';
@@ -21,7 +22,17 @@ console.log("resolvedPath: " + resolvedPath);
 const typeDefs = await readFile(resolvedPath, 'utf8');
 
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
+const apolloServer = new ApolloServer({
+    typeDefs,
+    resolvers,
+    plugins: [
+        // Install a landing page plugin based on NODE_ENV
+        process.env.NODE_ENV === 'production'
+            ? ApolloServerPluginLandingPageProductionDefault({
+                footer: false,
+            })
+            : ApolloServerPluginLandingPageLocalDefault(),
+    ],});
 await apolloServer.start();
 app.use(express.json({ limit: "50mb"}))
 app.use('/', apolloMiddleware(apolloServer));
