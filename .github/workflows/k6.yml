@@ -2,8 +2,7 @@ name: k6 Performance Test
 
 on:
   push:
-    branches:
-      - [ main ]
+    branches: [ "main" ]
 
 jobs:
   run-test:
